@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#21764d</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="source">#cc899f</color>
+    <color name="spinicon">#d9ccd0</color>
+    <color name="rl_header">#1f362e</color>
+</resources>

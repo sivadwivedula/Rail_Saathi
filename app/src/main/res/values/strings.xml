@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Project1</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_feedback">Feedback</string>
+    <string name="SOURCE">TO</string>
+    <string name="destination">FROM</string>
+    <string name="b1">Switch</string>
+    <string name="b2">Search the Train</string>
+    <string name="filtext"></string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="railway_app">Railways App</string>
+
+
+    <string name="wallets">Wallets</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="settings_lay">Settings page</string>
+    <string name="wall_lay">Wallets page</string>
+    <string name="about_lay">About page</string>
+    <string name="share">Share page</string>
+    <string name="send">send page</string>
+    <string name="feed">Feedback page</string>
+
+
+    <string name="splash_screen">Welcome To The Railways App</string>
+
+
+    <string name="SL">       SL </string>
+
+
+    <string name="Date">Date</string>
+    <string name="Train.no">Train No.</string>
+
+
+</resources>
