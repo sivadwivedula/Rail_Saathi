@@ -21,7 +21,7 @@ import java.util.HashMap;
  */
 
 public class getavailabilty extends Thread {
-    MainActivity.myadapter1 ma;
+    activity2.myadapter1 ma;
     String url = null;
     Handler refresh = new Handler(Looper.getMainLooper());
     String temp_avail=null;
@@ -31,7 +31,7 @@ public class getavailabilty extends Thread {
     String qu=null;
     int pos;
     String train_no,train_name;
-    getavailabilty(MainActivity.myadapter1 ma,String train_no,String source,String dest,String clas,String qu) {
+    getavailabilty(activity2.myadapter1 ma,String train_no,String source,String dest,String clas,String qu) {
         this.ma = ma;
         this.train_no= train_no;
         this.source=source;
@@ -66,7 +66,10 @@ public class getavailabilty extends Thread {
                 } else {
                     JSONArray ja1 = json1.getJSONArray("availability");
                     if (ja1.isNull(0)) {
-
+                       getavailabilty obj = new getavailabilty(ma, train_no, source, MainActivity.et_dest.toString(), clas, "GN");
+                        obj.start();
+                        obj = new getavailabilty(ma, train_no, source, MainActivity.et_dest.toString(), clas, "TQ");
+                        obj.start();
 
                     } else {
                         temp_avail = ((JSONObject) ja1.get(0)).get("status").toString();

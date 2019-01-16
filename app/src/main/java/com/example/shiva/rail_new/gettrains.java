@@ -32,11 +32,12 @@ import java.util.regex.Pattern;
  */
 
 public class gettrains extends AsyncTask<String,String,String>{
-      MainActivity.myadapter1 ma;
+      activity2.myadapter1 ma;
+    int m;
     String ne=null;
     Handler refresh = new Handler(Looper.getMainLooper());
 
-    gettrains(MainActivity.myadapter1 ma){
+    gettrains(activity2.myadapter1 ma){
             this.ma=ma;
         }
     @Override
@@ -67,13 +68,15 @@ public class gettrains extends AsyncTask<String,String,String>{
 
                     String temp_no=jobj.get("number").toString();
                     String temp_tr_time=jobj.get("travel_time").toString();
+                    String src_time =jobj.getString("dest_arrival_time");
+                    String dest_time=jobj.getString("src_departure_time");
                     JSONArray runsarr=jobj.getJSONArray("days");
                     JSONObject runsobj=runsarr.getJSONObject(MainActivity.date);
                          String runs=   runsobj.getString("runs");
                     if(runs.equals("Y"))
                     {
 
-                        publishProgress(temp_name,temp_no,temp,temp1,temp_tr_time);
+                        publishProgress(temp_name,temp_no,temp,temp1,temp_tr_time,src_time,dest_time);
                     }
 
                 }
@@ -130,9 +133,13 @@ public class gettrains extends AsyncTask<String,String,String>{
         hm.put("src",values[3]);
         hm.put("dest",values[2]);
         hm.put("tr_time",values[4]);
+        hm.put("src_time",values[5]);
+        hm.put("dest_time",values[6]);
         hm.put("val",new traindetail());
         MainActivity.detail1.add(hm);
         ma.notifyDataSetChanged();
+
+
 
     }
 
@@ -144,8 +151,12 @@ public class gettrains extends AsyncTask<String,String,String>{
 
 
        getavailabilty obj[] = new getavailabilty[MainActivity.detail1.size()];
-        for(int i=0;i<MainActivity.detail1.size();i++) {
-            HashMap hm =MainActivity.detail1.get(i);
+        if(MainActivity.detail1.isEmpty()){
+            activity2.set();
+        }
+        for( m=0;m<MainActivity.detail1.size();m++) {
+
+            HashMap hm =MainActivity.detail1.get(m);
             String no=hm.get("no").toString();
             String src = hm .get("src").toString();
             String dest = hm .get("dest").toString();
@@ -154,17 +165,19 @@ public class gettrains extends AsyncTask<String,String,String>{
                 for (int j = 0; j < a.length; j++) {
                     //String cl = MainActivity.list_tr_classes.get(i).get(j).toString();
 
-                    obj[i] = new getavailabilty(ma, no, src, dest, a[j], "GN");
-                  obj[i].start();
+                    obj[m] = new getavailabilty(ma, no, src, dest, a[j], "GN");
+                  obj[m].start();
 
-                    obj[i] = new getavailabilty(ma, no, src, dest, a[j], "TQ");
-                    obj[i].start();
+                    obj[m] = new getavailabilty(ma, no, src, dest, a[j], "TQ");
+                    obj[m].start();
 
 
 
-            }
-
+                }
         }
+
+
+
 
 
 
@@ -173,4 +186,31 @@ public class gettrains extends AsyncTask<String,String,String>{
 
 }
 
-
+//
+// if(i==199){
+//         try {
+//         obj[i].join();
+//         for(int l=200;i<MainActivity.detail1.size();l++){
+//        HashMap hm1 =MainActivity.detail1.get(i);
+//        String no1=hm.get("no").toString();
+//        String src1 = hm .get("src").toString();
+//        String dest1 = hm .get("dest").toString();
+//
+//        for (int jj = 0; j < a.length; j++) {
+//        //String cl = MainActivity.list_tr_classes.get(i).get(j).toString();
+//
+//        obj[i] = new getavailabilty(ma, no, src, dest, a[j], "GN");
+//        obj[i].start();
+//
+//        obj[i] = new getavailabilty(ma, no, src, dest, a[j], "TQ");
+//        obj[i].start();
+//
+//
+//
+//        }
+//        }
+//        break;
+//        } catch (InterruptedException e) {
+//        e.printStackTrace();
+//        }
+//        }
